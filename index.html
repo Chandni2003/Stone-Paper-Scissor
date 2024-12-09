@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Paper Scissor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Rock Paper Scissor</h1>
+    <div class="choices">
+        <div class="choice" id="rock">
+            <img src="rock.jpg" alt="Rock">
+        </div>
+        <div class="choice" id="paper">
+            <img src="paper.jpg" alt="Paper">
+        </div>
+        <div class="choice" id="scissor">
+            <img src="scissor.png" alt="Scissor">
+        </div>
+    </div>
+    <div class="score-board">
+        <div id="user-score">
+            <p>0</p>
+        </div>
+        <div id="comp-score" >
+            <p>0</p>
+        </div>
+    </div>
+    <div class="score">
+        <p>You</p>
+        <p>Comp</p>
+    </div>
+
+    <div class="msg-container">
+        <p id="msg">Play your move</p>
+    </div>
+
+    <!-- party popper -->
+    <div id="party-popper" class="hidden"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
