@@ -10,30 +10,52 @@ const msg = document.querySelector("#msg");
 const userScorePara = document.querySelector("#user-score");
 const compScorePara = document.querySelector("#comp-score");
 
-// For computer choice
+// computer choice
 const genCompChoice = () => {
     const options = ["rock", "paper", "scissor"];
     const randIdx = Math.floor(Math.random() * 3);
     return options[randIdx];
 };
 
-//Draw Messages
+// Play party sound
+const playPartySound = () => {
+    const partySound = document.getElementById("party-sound");
+    partySound.play(); // This will play the sound
+};
+
+// Play lose sound
+const playLoseSound = () => {
+    const loseSound = document.getElementById("lose-sound");
+    loseSound.play(); // This will play the lose sound
+};
+
+// Play the draw sound
+const playDrawSound = () => {
+    const drawSound = document.getElementById("draw-sound");
+    drawSound.play(); // This will play the draw sound
+};
+
+// Draw Messages
 const drawGame = () => {
     msg.innerText = "Game Was Draw! Play Again.";
     msg.style.backgroundColor = "#081b31";
+    playDrawSound(); // Play the draw sound
 };
 
-//  confetti particles and animate
+// Confetti particles and animate
 const createConfetti = () => {
-    const numConfetti = 1000; // Number of confetti particles
+    const numConfetti = 250; //  confetti particles
     const partyPopper = document.getElementById("party-popper");
 
-    // confetti particles dynamically
+    // Clear existing confetti particles
+    partyPopper.innerHTML = '';
+
+    // Confetti particles dynamically
     for (let i = 0; i < numConfetti; i++) {
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
-        // confetti direction, color, and animation delay
+        // Confetti direction, color, and animation delay
         const xPos = Math.random() * 100 + "vw";
         const yPos = Math.random() * 100 + "vh";
         const size = Math.random() * 10 + "px";
@@ -50,17 +72,18 @@ const createConfetti = () => {
     }
 };
 
-// winner message and trigger the party popper
+// Winner message and trigger the party popper
 const showWinner = (userWin, userChoice, compchoice) => {
     const partyPopper = document.getElementById("party-popper");
-    
+
     if (userWin) {
         userScore++;
         userScorePara.innerText = userScore;
 
-        // party popper effect
-        partyPopper.style.display = "flex"; // Show party popper
-        createConfetti(); // confetti animation
+        // Party popper effect
+        partyPopper.style.display = "flex"; // party popper
+        createConfetti(); // Confetti animation
+        playPartySound(); // Play party sound
 
         setTimeout(() => {
             partyPopper.style.display = "none"; 
@@ -70,17 +93,17 @@ const showWinner = (userWin, userChoice, compchoice) => {
     } else {
         compScore++;
         compScorePara.innerText = compScore;
+        playLoseSound(); // Play lose sound
         msg.innerText = `You Lose! ${compchoice} beats ${userChoice}`;
         msg.style.backgroundColor = "red";
     }
 };
 
-//playGame function
+// PlayGame function
 const playGame = (userChoice) => {
-    
     const compchoice = genCompChoice();
 
-    // game outcome
+    // Game outcome
     if (userChoice === compchoice) {
         drawGame(); 
     } else {
@@ -100,12 +123,7 @@ const playGame = (userChoice) => {
 // For user choice
 choices.forEach((choice) => {
     choice.addEventListener("click", () => {
-        
         const userChoice = choice.getAttribute("id");
         playGame(userChoice);
     });
-});
-
-window.addEventListener('resize', () => {
-    // Code to adjust UI elements on window resize.
 });
