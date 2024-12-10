@@ -1,13 +1,17 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     text-align: center;
+    box-sizing: border-box;
 }
 
+/* Body */
 body {
     background-color: rgb(223, 216, 216);
 }
 
+/* Heading */
 h1 {
     background-color: #081b31;
     color: #fff;
@@ -15,6 +19,17 @@ h1 {
     line-height: 5rem;
 }
 
+/* Choices Container */
+.choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 5rem;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+/* Choice Styling */
 .choice {
     height: 165px;
     width: 165px;
@@ -22,6 +37,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem;
 }
 
 .choice:hover {
@@ -29,14 +45,7 @@ h1 {
     cursor: pointer;
 }
 
-.choices {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 5rem;
-}
-
+/* Image Styling */
 img {
     height: 150px;
     width: 150px;
@@ -58,6 +67,7 @@ img {
     font-size: 4rem;
 }
 
+/* Score Section */
 .score {
     font-size: 3rem;
     display: flex;
@@ -66,6 +76,7 @@ img {
     gap: 3rem;
 }
 
+/* Message Container */
 .msg-container {
     margin-top: 5rem;
 }
@@ -79,22 +90,21 @@ img {
     border-radius: 1rem;
 }
 
-/*party popper */
+/* Party Popper */
 #party-popper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
-    display: none; 
+    z-index: 1000;
+    display: none;
 }
 
-/* Confetti particles */
+/* Confetti Particles */
 .confetti {
     position: absolute;
     width: 10px;
@@ -102,7 +112,7 @@ img {
     background-color: #ff0;
     border-radius: 50%;
     opacity: 0;
-    animation: confettiAnimation 2s forwards;
+    animation: confettiAnimation 20s forwards;
 }
 
 @keyframes confettiAnimation {
@@ -120,12 +130,92 @@ img {
     }
 }
 
-/* Fade out */
+/* Fade out for messages */
 @keyframes fadeOut {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
+    }
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        height: 4rem;
+        line-height: 4rem;
+    }
+
+    .choices {
+        gap: 2rem;
+    }
+
+    .choice {
+        height: 120px;
+        width: 120px;
+    }
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .score-board {
+        gap: 4rem;
+    }
+
+    #user-score, #comp-score {
+        font-size: 3rem;
+    }
+
+    .score {
+        font-size: 2.5rem;
+        gap: 2rem;
+    }
+
+    #msg {
+        font-size: 1.8rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+        height: 3.5rem;
+    }
+
+    .choices {
+        gap: 1.5rem;
+    }
+
+    .choice {
+        height: 100px;
+        width: 100px;
+    }
+
+    img {
+        height: 80px;
+        width: 80px;
+    }
+
+    .score-board {
+        gap: 2rem;
+    }
+
+    #user-score, #comp-score {
+        font-size: 2rem;
+    }
+
+    .score {
+        font-size: 2rem;
+        gap: 1.5rem;
+    }
+
+    #msg {
+        font-size: 1.6rem;
+        padding: 0.6rem;
     }
 }
