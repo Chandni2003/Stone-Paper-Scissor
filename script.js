@@ -10,6 +10,11 @@ const msg = document.querySelector("#msg");
 const userScorePara = document.querySelector("#user-score");
 const compScorePara = document.querySelector("#comp-score");
 
+// Access Audio elements
+const partySound = document.getElementById("party-sound");
+const loseSound = document.getElementById("lose-sound");
+const drawSound = document.getElementById("draw-sound");
+
 // computer choice
 const genCompChoice = () => {
     const options = ["rock", "paper", "scissor"];
@@ -19,20 +24,20 @@ const genCompChoice = () => {
 
 // Play party sound
 const playPartySound = () => {
-    const partySound = document.getElementById("party-sound");
+    partySound.currentTime = 0; // Reset the sound to start from the beginning
     partySound.play(); // This will play the sound
 };
 
 // Play lose sound
 const playLoseSound = () => {
-    const loseSound = document.getElementById("lose-sound");
-    loseSound.play(); // This will play the lose sound
+    loseSound.currentTime = 0;
+    loseSound.play();
 };
 
 // Play the draw sound
 const playDrawSound = () => {
-    const drawSound = document.getElementById("draw-sound");
-    drawSound.play(); // This will play the draw sound
+    drawSound.currentTime = 0;
+    drawSound.play();
 };
 
 // Draw Messages
@@ -44,7 +49,7 @@ const drawGame = () => {
 
 // Confetti particles and animate
 const createConfetti = () => {
-    const numConfetti = 250; //  confetti particles
+    const numConfetti = 150; // Reduce the number of confetti particles
     const partyPopper = document.getElementById("party-popper");
 
     // Clear existing confetti particles
@@ -55,7 +60,6 @@ const createConfetti = () => {
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
-        // Confetti direction, color, and animation delay
         const xPos = Math.random() * 100 + "vw";
         const yPos = Math.random() * 100 + "vh";
         const size = Math.random() * 10 + "px";
@@ -81,13 +85,14 @@ const showWinner = (userWin, userChoice, compchoice) => {
         userScorePara.innerText = userScore;
 
         // Party popper effect
-        partyPopper.style.display = "flex"; // party popper
+        partyPopper.style.display = "flex"; // Show party popper
         createConfetti(); // Confetti animation
-        playPartySound(); // Play party sound
+        playPartySound(); // Play the party sound
 
         setTimeout(() => {
             partyPopper.style.display = "none"; 
         }, 3000); 
+
         msg.innerText = `You Win! Your ${userChoice} beats ${compchoice}`;
         msg.style.backgroundColor = "green";
     } else {
